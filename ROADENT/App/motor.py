@@ -28,3 +28,11 @@ def STOP():
     GPIO.output(Motor_A -, False)
     GPIO.output(Motor_B +, False)
     GPIO.output(Motor_B -, False)
+
+def LEFT():
+    init()
+    PWM = GPIO.PWM(Power, 50)
+    GPIO.output(Motor_A +, False)
+    GPIO.output(Motor_A -, False)
+    GPIO.output(Motor_B +, False)
+    GPIO.output(Motor_B -, False)
