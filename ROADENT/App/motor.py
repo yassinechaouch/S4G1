@@ -20,3 +20,11 @@ def forward_slow(tf):
     GPIO.output(Motor_B+, True)
     GPIO.output(Motor_B-, False)
     time.sleep(tf)
+
+def STOP():
+    init()
+    PWM = GPIO.PWM(Power,0)
+    GPIO.output(Motor_A +, False)
+    GPIO.output(Motor_A -, False)
+    GPIO.output(Motor_B +, False)
+    GPIO.output(Motor_B -, False)

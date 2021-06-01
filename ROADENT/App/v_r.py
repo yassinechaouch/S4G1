@@ -1,19 +1,13 @@
 import speech_recognition as sr
 print(sr.__version__)
+def Speech_Recognition_From_Mic(recognizer,microphone):
 
-r = sr.Recognizer()
+    if not isinstance(recognizer, sr.Recognizer):
+        raise TypeError("`recognizer` must be `Recognizer` instance")
 
-harvard = sr.AudioFile('audio_files_harvard.wav')
-with harvard as source:
-    audio = r.record(source)
+    if not isinstance(microphone, sr.Microphone):
+        raise TypeError("`microphone` must be `Microphone` instance")
 
-print(type(audio))
-print(r.recognize_google(audio))
-
-jackhammer = sr.AudioFile('audio_files_jackhammer.wav')
-with jackhammer as source1:
-    r.adjust_for_ambient_noise(source1, duration=0.5)
-    audio1 = r.record(source1)
-
-print('                            ')
-print(r.recognize_google(audio1))
+    with microphone as source:
+        recognizer.adjust_for_ambient_noise(source)
+        audio = recognizer.listen(source)
