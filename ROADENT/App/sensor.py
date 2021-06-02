@@ -2,17 +2,17 @@
 import RPi.GPIO as GPIO
 import time
 class sensors():
-    def __init__(self, echo, trigger):
+    def __init__(self, echo_pin, trigger_pin):
         # GPIO Mode (BOARD / BCM)
         GPIO.setmode(GPIO.BOARD)
 
         # set GPIO Pins
-        GPIO_TRIGGER = 12
-        GPIO_ECHO = 18
+        self.echo_pin = echo_pin
+        self.trigger_pin = trigger_pin
 
         # set GPIO direction (IN / OUT)
-        GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-        GPIO.setup(GPIO_ECHO, GPIO.IN)
+        GPIO.setup(self.trigger_pin, GPIO.OUT)
+        GPIO.setup(self.echo_pin, GPIO.IN)
 
 
     def distance():
