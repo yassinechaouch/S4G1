@@ -1,6 +1,7 @@
 #Libraries
 import RPi.GPIO as GPIO
 import time
+
 class sensors():
     def __init__(self, echo_pin, trigger_pin):
         # GPIO Mode (BOARD / BCM)
@@ -14,24 +15,23 @@ class sensors():
         GPIO.setup(self.trigger_pin, GPIO.OUT)
         GPIO.setup(self.echo_pin, GPIO.IN)
 
-
     def distance():
         # set Trigger to HIGH
-        GPIO.output(GPIO_TRIGGER, True)
+        GPIO.output(self.trigger_pin, True)
 
         # set Trigger after 0.01ms to LOW
         time.sleep(0.00001)
-        GPIO.output(GPIO_TRIGGER, False)
+        GPIO.output(self.trigger_pin, False)
 
-        StartTime = time.time()
-        StopTime = time.time()
+        # StartTime = time.time()
+        # StopTime = time.time()
 
         # save StartTime
-        while GPIO.input(GPIO_ECHO) == 0:
+        while GPIO.input(self.echo_pin) == 0:
             StartTime = time.time()
 
         # save time of arrival
-        while GPIO.input(GPIO_ECHO) == 1:
+        while GPIO.input(Gself.echo_pin) == 1:
             StopTime = time.time()
 
         # time difference between start and arrival
@@ -41,5 +41,6 @@ class sensors():
         distance = (TimeElapsed * 34300) / 2
 
         return distance
+
 
 
