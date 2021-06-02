@@ -35,3 +35,15 @@ GPIO.output(MotorB-, True)
 #runs forward at 50% power for 2 seconds
 GPIO.output(enable, True)
 sleep(2)'''
+
+if __name__ == '__main__':
+    try:
+        while True:
+            dist = distance()
+            print("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
+
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
