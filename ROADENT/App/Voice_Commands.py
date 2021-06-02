@@ -1,4 +1,6 @@
 import speech_recognition as sr
+from ROADENT.App import *
+
 
 def Voice_Commands():
 
@@ -14,10 +16,14 @@ def Voice_Commands():
     x = r.recognize_google(audio)
 
     if x == 'go':
-        forward(5)
+        Motor_1.clockwise(5)
+        Motor_2.c_clockwise(5)
     elif x == 'stop':
-        STOP()
+        Motor_1.STOP()
+        Motor_2.STOP()
     elif x == 'left':
-        LEFT(5)
+        Motor_1.clockwise(5)
+        Motor_2.clockwise(5)
     elif x == 'right':
-        RIGHT(5)
+        Motor_1.c_clockwise(5)
+        Motor_2.clockwise(5)
