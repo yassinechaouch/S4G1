@@ -1,6 +1,7 @@
 #Libraries
 import RPi.GPIO as GPIO
 import time
+from motors import *
 
 class sensors():
     def __init__(self, echo_pin, trigger_pin):
@@ -31,7 +32,7 @@ class sensors():
             StartTime = time.time()
 
         # save time of arrival
-        while GPIO.input(Gself.echo_pin) == 1:
+        while GPIO.input(self.echo_pin) == 1:
             StopTime = time.time()
 
         # time difference between start and arrival
@@ -40,7 +41,5 @@ class sensors():
         # and divide by 2, because there and back
         distance = (TimeElapsed * 34300) / 2
 
-        return distance
-
-
-
+        if (distance < 0.03):
+            STOP()

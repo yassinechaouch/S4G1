@@ -32,20 +32,12 @@ class motor:
         time.sleep(tf)
         PWM.stop()
 
-
-     def clockwise_slow(tf):
-         PWM = GPIO.PWM(self.speed_pin, 50)  # '100% power supplied'
-         PWM.start(0)
-         GPIO.output(self.dir_pin, True)
-         time.sleep(tf)
-         PWM.stop()
-
-    def STOP():
-        PWM = GPIO.PWM(self.speed_pin, 100)
-
-    '''def RIGHT():
-        PWM = GPIO.PWM(self.speed_pin, 100)
+    def clockwise_slow(tf):
+        PWM = GPIO.PWM(self.speed_pin, 50)  # '100% power supplied'
         PWM.start(0)
         GPIO.output(self.dir_pin, True)
         time.sleep(tf)
-        PWM.stop()'''
+        PWM.stop()
+
+    def STOP():
+        PWM = GPIO.PWM(self.speed_pin, 100)
