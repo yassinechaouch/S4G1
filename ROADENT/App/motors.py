@@ -1,7 +1,8 @@
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO
 
-class motor:
+
+class Motor:
     def __init__(self, dir_pin, speed_pin):
         self.dir_pin= dir_pin
         self.speed_pin= speed_pin

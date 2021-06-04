@@ -4,6 +4,8 @@ from ROADENT.App import *
 
 def Voice_Commands():
 
+    SENSOR1.distance()
+
     r = sr.Recognizer()
     mic = sr.Microphone()
     # sr.Microphone.list_microphone_names()
