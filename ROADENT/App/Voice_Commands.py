@@ -2,12 +2,12 @@ import speech_recognition as sr
 from ROADENT.App import *
 
 
-def Voice_Commands():
+def voice_commands():
 
-    SENSOR1.distance()
+    # SENSOR1.distance()
 
     r = sr.Recognizer()
-    mic = sr.Microphone()
+    # mic = sr.Microphone()
     # sr.Microphone.list_microphone_names()
     mic = sr.Microphone(device_index=3)
 
