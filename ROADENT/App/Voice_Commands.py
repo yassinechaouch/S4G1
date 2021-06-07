@@ -21,11 +21,11 @@ def Voice_Commands():
         Motor_1.clockwise(5)
         Motor_2.c_clockwise(5)
     elif x == 'stop':
-        Motor_1.STOP()
-        Motor_2.STOP()
+        Motor_1.stop()
+        Motor_2.stop()
     elif x == 'left':
         Motor_1.clockwise(5)
-        Motor_2.clockwise(5)
+        Motor_2.clockwise_slow(5)
     elif x == 'right':
-        Motor_1.c_clockwise(5)
+        Motor_1.clockwise_slow(5)
         Motor_2.clockwise(5)

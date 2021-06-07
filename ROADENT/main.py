@@ -4,6 +4,6 @@ from ROADENT.App import *
 if __name__ == "__main__":
 
     while True:
-        Motor_1.clockwise(0)
+        Motor_1.clockwise()
         Motor_2.c_clockwise()
         Voice_Commands()
