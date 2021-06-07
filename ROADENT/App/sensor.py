@@ -1,9 +1,10 @@
 #Libraries
 import RPi.GPIO as GPIO
 import time
-from motors import *
+from ROADENT.App import *
 
-class sensors():
+
+class Sensor():
     def __init__(self, echo_pin, trigger_pin):
         # GPIO Mode (BOARD / BCM)
         GPIO.setmode(GPIO.BOARD)
@@ -16,7 +17,7 @@ class sensors():
         GPIO.setup(self.trigger_pin, GPIO.OUT)
         GPIO.setup(self.echo_pin, GPIO.IN)
 
-    def distance():
+    def distance(self):
         # set Trigger to HIGH
         GPIO.output(self.trigger_pin, True)
 
@@ -41,5 +42,6 @@ class sensors():
         # and divide by 2, because there and back
         distance = (TimeElapsed * 34300) / 2
 
-        if (distance < 0.03):
-            STOP()
+        if (distance < 0.1):
+            Motor_1.STOP()
+
