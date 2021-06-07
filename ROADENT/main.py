@@ -1,5 +1,4 @@
 from ROADENT.App.Voice_Commands import Voice_Commands
-from ROADENT import *
 from ROADENT.App import *
 
 if __name__ == "__main__":
