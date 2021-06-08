@@ -1,5 +1,5 @@
 #Libraries
-import RPi.GPIO as GPIO
+'''import RPi.GPIO as GPIO
 import time
 from ROADENT.App import *
 
@@ -43,5 +43,5 @@ class Sensor():
         distance = (TimeElapsed * 34300) / 2
 
         if (distance < 0.1):
-            Motor_1.STOP()
+            Motor_1.stop() '''
 

@@ -11,18 +11,16 @@ import speech_recognition as sr
 
 if __name__ == "__main__":
     r = sr.Recognizer()
-    mic = sr.Microphone()
-    sr.Microphone.list_microphone_names()
-    mic = sr.Microphone(device_index=3)
+    r.energy_threshold = 5000
+    mic = sr.Microphone(device_index=1)
+    print(sr.Microphone.list_microphone_names())
 
     with mic as source:
+        print("Say now!")
         r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
+        audio = r.listen(source, 3)
 
-    x = r.recognize_google(audio)
-
-    print(x)
-
-
+    my_string = r.recognize_google(audio)
+    print(my_string)
 
 
