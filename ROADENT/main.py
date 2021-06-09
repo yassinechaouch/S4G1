@@ -1,11 +1,10 @@
 from App import *
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
 
-    #while True:
-     #   Motor_1.clockwise()
-     #   Voice_Commands()
-import speech_recognition as sr
+    while True:
+        Motor_1.clockwise()
+'''import speech_recognition as sr
 
 if __name__ == "__main__":
     r = sr.Recognizer()
