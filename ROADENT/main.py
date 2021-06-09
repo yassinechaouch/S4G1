@@ -22,5 +22,3 @@ if __name__ == "__main__":
 
     my_string = r.recognize_google(audio)
     print(my_string)
-
-
