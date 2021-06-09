@@ -1,4 +1,4 @@
-import speech_recognition as sr
+'''import speech_recognition as sr
 from ROADENT.App import *
 
 
@@ -29,4 +29,4 @@ def voice_commands():
         Motor_2.clockwise_slow(5)
     elif my_string == 'right':
         Motor_1.clockwise_slow(5)
-        Motor_2.clockwise(5)
+        Motor_2.clockwise(5)'''

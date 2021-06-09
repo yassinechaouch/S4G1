@@ -1,6 +1,4 @@
-#from ROADENT.App.Voice_Commands import Voice_Commands
-#from ROADENT.App.motors import *
-#from ROADENT.App import *
+from App import *
 
 #if __name__ == "__main__":
 

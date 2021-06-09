@@ -1,7 +1,7 @@
-#Libraries
-'''import RPi.GPIO as GPIO
+'''''#Libraries
+import RPi.GPIO as GPIO
 import time
-from ROADENT.App import *
+from App import *
 
 
 class Sensor():

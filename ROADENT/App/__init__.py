@@ -1,5 +1,5 @@
-from motors import *
-# from sensor import *
+from App.motors import *
+from App.sensor import *
 
 
 Power = 2  # variable that allows power to go to the motors as it is connected to the VCC pin.'
