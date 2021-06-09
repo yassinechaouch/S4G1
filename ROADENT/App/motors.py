@@ -1,4 +1,52 @@
+import sys
 import time
+import RPi.GPIO as GPIO
+
+mode = GPIO.getmode()
+
+GPIO.cleanup
+
+Motor1_Forward = 26
+Motor1_Backward = 24
+
+Motor2_Forward = 37
+Motor2_Backward = 34
+
+sleeptime = 1
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(Motor1_Forward, GPIO.OUT)
+GPIO.setup(Motor1_Backward, GPIO.OUT)
+
+GPIO.setup(Motor2_Forward, GPIO.OUT)
+GPIO.setup(Motor2_Backward, GPIO.OUT)
+
+
+def forward(x):
+    GPIO.output(Motor1_Forward, GPIO.HIGH)
+    GPIO.output(Motor2_Forward, GPIO.HIGH)
+    print("Moving Forward")
+    time.sleep(x)
+    GPIO.output(Motor1_Forward, GPIO.LOW)
+    GPIO.output(Motor2_Forward, GPIO.LOW)
+
+
+def reverse(x):
+    GPIO.output(Motor1_Backward, GPIO.HIGH)
+    GPIO.output(Motor2_Backward, GPIO.HIGH)
+    print("Moving Backward")
+    time.sleep(x)
+    GPIO.output(Motor1_Backward, GPIO.LOW)
+    GPIO.output(Motor2_Backward, GPIO.LOW)
+
+
+while True:
+    forward(5)
+    reverse(5)
+    GPIO.cleanup()
+
+
+'''import time
 import RPi.GPIO as GPIO
 
 
@@ -35,3 +83,4 @@ class Motor:
     def stop(self):
         pwm = GPIO.PWM(self.speed_pin, 0)
         pwm.stop()
+'''
