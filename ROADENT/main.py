@@ -1,9 +1,13 @@
-from App import *
+from ROADENT.App.motors import *
 
 if __name__ == "__main__":
 
     while True:
-        Motor_1.clockwise()
+        forward(5)
+        reverse(5)
+
+
+
 '''import speech_recognition as sr
 
 if __name__ == "__main__":
@@ -18,4 +22,4 @@ if __name__ == "__main__":
         audio = r.listen(source, 3)
 
     my_string = r.recognize_google(audio)
-    print(my_string)
+    print(my_string)'''
