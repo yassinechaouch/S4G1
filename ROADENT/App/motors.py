@@ -45,7 +45,24 @@ while True:
     reverse(5)
     GPIO.cleanup()
 
+'''
+# Method 2:
 
+import RPi.GPIO as GPIO
+from gpiozero import 
+import time
+
+motor_1 = Motor(forward = 4, backward = 14)
+motor_2 = Motor(forward = 14, backward = 27)
+
+motor_1.forward()
+motor_2.backward()
+
+motor_1.stop()
+motor_2.stop()
+
+
+'''
 '''import time
 import RPi.GPIO as GPIO
 
