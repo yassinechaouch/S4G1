@@ -1,11 +1,11 @@
-# from App.motors import *
-# from App.sensor import *
+
 
 
 # Power = 2  # variable that allows power to go to the motors as it is connected to the VCC pin.'
+from ROADENT.App.motors import Motor
 
-# Motor_1 = Motor(3, 5)
-# Motor_2 = Motor(7, 8)
+Motor_1 = Motor(3, 5)
+Motor_2 = Motor(7, 8)
 # SENSOR1 = Sensor(18, 12)
 
 # if(SENSOR1.)
