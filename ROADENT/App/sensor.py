@@ -1,80 +1,54 @@
-'''''#Libraries
 import RPi.GPIO as GPIO
 import time
-from App import *
+
+# GPIO Mode (BOARD / BCM)
+GPIO.setmode(GPIO.BCM)
+
+# set GPIO Pins
+GPIO_TRIGGER = 18
+GPIO_ECHO = 24
+
+# set GPIO direction (IN / OUT)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 
-class Sensor():
-    def __init__(self, echo_pin, trigger_pin):
-        # GPIO Mode (BOARD / BCM)
-        GPIO.setmode(GPIO.BOARD)
+def distance():
+    # set Trigger to HIGH
+    GPIO.output(GPIO_TRIGGER, True)
 
-        # set GPIO Pins
-        self.echo_pin = echo_pin
-        self.trigger_pin = trigger_pin
+    # set Trigger after 0.01ms to LOW
+    time.sleep(0.00001)
+    GPIO.output(GPIO_TRIGGER, False)
 
-        # set GPIO direction (IN / OUT)
-        GPIO.setup(self.trigger_pin, GPIO.OUT)
-        GPIO.setup(self.echo_pin, GPIO.IN)
+    StartTime = time.time()
+    StopTime = time.time()
 
-    def distance(self):
-        # set Trigger to HIGH
-        GPIO.output(self.trigger_pin, True)
+    # save StartTime
+    while GPIO.input(GPIO_ECHO) == 0:
+        StartTime = time.time()
 
-        # set Trigger after 0.01ms to LOW
-        time.sleep(0.00001)
-        GPIO.output(self.trigger_pin, False)
+    # save time of arrival
+    while GPIO.input(GPIO_ECHO) == 1:
+        StopTime = time.time()
 
-        # StartTime = time.time()
-        # StopTime = time.time()
+    # time difference between start and arrival
+    TimeElapsed = StopTime - StartTime
+    # multiply with the sonic speed (34300 cm/s)
+    # and divide by 2, because there and back
+    distance = (TimeElapsed * 34300) / 2
 
-        # save StartTime
-        while GPIO.input(self.echo_pin) == 0:
-            StartTime = time.time()
-
-        # save time of arrival
-        while GPIO.input(self.echo_pin) == 1:
-            StopTime = time.time()
-
-        # time difference between start and arrival
-        TimeElapsed = StopTime - StartTime
-        # multiply with the sonic speed (34300 cm/s)
-        # and divide by 2, because there and back
-        distance = (TimeElapsed * 34300) / 2
-
-        if (distance < 0.1):
-            Motor_1.stop() '''
-
-import RPi.GPIO as GPIO
-
-ObstaclePin = 24
-
-#def __init__(self, echo_pin, trigger_pin):
-def setup():
-    GPIO.setmode(GPIO.BOARD)  # Set GPIO by numbers
+    return distance
 
 
-GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+if __name__ == '__main__':
+    try:
+        while True:
+            dist = distance()
+            print("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
 
-
-def loop():
-    while True:
-        if (0 == GPIO.input(ObstaclePin)):
-
-
-print
-"14CORE | Obstacle Avoidance Sensor Test \n"
-print
-" DETECTED: There is an obstacle ahead"
-
-
-def destroy():
-    GPIO.cleanup()  # Release resource
-
-
-'''if __name__ == '__main__':  # The Program start here
-    setup()
-try:
-    loop()
-except KeyboardInterrupt:  # Control C is pressed, the child program destroy will be executed.
-    destroy()
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()

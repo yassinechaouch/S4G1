@@ -63,7 +63,8 @@ motor_2.stop()
 
 
 '''
-'''import time
+
+import time
 import RPi.GPIO as GPIO
 
 
