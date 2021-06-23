@@ -1,36 +1,47 @@
-import pygame
+from pyPS4Controller.controller import Controller
+from motors import Motor
 
-from ROADENT.App import Motor_1, Motor_2
+Motor_1 = Motor(3, 5)
+Motor_2 = Motor(7, 8)
 
-pygame.init()
-pygame.joystick.init()
+#from ROADENT.App import Motor_1, Motor_2
 
-controllers = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-print(controllers)
 
-controller = pygame.joystick.Joystick(0)
-controller.init()
 
-if(pygame.joystick.get_init()):
-    print("Joystick module initialized!")
-else:
-    print("Joystick module not initialized!")
+class MyController(Controller):
+    
+    def __init__(self, **kwargs):
+        Controller.__init__(self, **kwargs)
 
-while True:
-    events = pygame.event.get()
-    for event in events:
-        if(event.type == pygame.JOYBUTTONDOWN): ## when a button is clicked
-            if(controller.get_button(11)): ## When DPAD-UP clicked
-                print("DPADUP pressed -- Car goes forwards") ## motors start moving the car forwards
-                Motor_1.clockwise(5)
-                Motor_2.c_clockwise(5)
-            if(controller.get_button(12)): ## When DPAD-DOWN clicked
-                print("DPADDOWN pressed -- Car goes backwards") ## motors start moving the car backwards
-            if (controller.get_button(13)):  ## When DPAD-LEFT clicked
-                print("DPADLEFT pressed -- Car goes left")
-            if (controller.get_button(14)):  ## When DPAD-LEFT clicked
-                print("DPADRIGHT pressed -- Car goes Right")
-        elif(event.type == pygame.JOYBUTTONUP): ## when a button is released
-            print("Car stops moving!") ## car stops moving
-            Motor_1.stop()
-            Motor_2.stop()
+    def on_up_arrow_press(self):
+       print("Forward")
+       Motor_1.clockwise()
+       Motor_2.clockwise()
+       
+
+    def on_up_down_arrow_release(self):
+        print("Stop")
+        Motor_1.stop()
+        Motor_2.stop()
+       
+    def on_down_arrow_press(self):
+        Motor_1.c_clockwise()
+        Motor_2.c_clockwise()
+        
+    def on_right_arrow_press(self):
+        print("turn right")
+        Motor_2.clockwise()
+        Motor_1.c_clockwise()
+        
+    def on_left_arrow_press(self):
+        Motor_1.clockwise()
+        Motor_2.c_clockwise()
+    
+    def on_left_right_arrow_release(self):
+        Motor_1.stop()
+        Motor_2.stop()
+
+
+controller = MyController(interface="/dev/input/js0", connecting_using_ds4drv=False)
+
+controller.listen(timeout=60)

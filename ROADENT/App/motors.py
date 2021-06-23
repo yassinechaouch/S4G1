@@ -12,28 +12,15 @@ class Motor:
         GPIO.setup(self.dir2_pin, GPIO.OUT)
         GPIO.setup(self.dir_pin, GPIO.OUT)
 
-    def clockwise(self, tf):
-        pwm = GPIO.PWM(self.dir2_pin, 100)  # '100% power supplied'
-        pwm.start(0)
+    def clockwise(self):
         GPIO.output(self.dir_pin, True)
-        time.sleep(tf)
-        pwm.stop()
+        GPIO.output(self.dir2_pin, False)       
 
-    def clockwise_slow(self, tf):
-        pwm = GPIO.PWM(self.dir2_pin, 50)  # '100% power supplied'
-        pwm.start(0)
-        GPIO.output(self.dir_pin, True)
-        time.sleep(tf)
-        pwm.stop()
-
-    def c_clockwise(self, tf):
-        pwm = GPIO.PWM(self.dir2_pin, 100)  # '100% power supplied'
-        pwm.start(0)
+    def c_clockwise(self):
         GPIO.output(self.dir_pin, False)
-        time.sleep(tf)
-        pwm.stop()
+        GPIO.output(self.dir2_pin, True)
 
     def stop(self):
-        pwm = GPIO.PWM(self.dir2_pin, 0)
-        pwm.stop()
+        GPIO.output(self.dir_pin, False)
+        GPIO.output(self.dir2_pin, False)
 
